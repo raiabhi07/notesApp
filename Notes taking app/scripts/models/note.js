@@ -1,8 +1,13 @@
-class Note{   //in this the class will be created in object and then it will be destructured at the destination file
+// ES6
+class Note{
     constructor(noteObject){
         for(let key in noteObject){
-            this[key]=noteObject[key];
+            this[key]= noteObject[key];
         }
+        this.isMarked = false;
+    }
+    toggleMark(){
+        this.isMarked = !this.isMarked;
     }
 }
 export default Note;

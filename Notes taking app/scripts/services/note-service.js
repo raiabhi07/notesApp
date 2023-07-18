@@ -1,40 +1,51 @@
-//  CRUD operation will be done here
-import Note  from "../models/note.js";
-export const noteOperations={
+// CRUD
+import Note from '../models/note.js';
+export const noteOperations ={
     notes:[],
-    add(noteObject){
-        const note=new Note(noteObject);
-        this.notes.push(note);
-    },
-    delete(noteObject){
-        const note=new Note(noteObject);
-        this.notes.pop(note);
-    },
-    total(){
-        return this.notes.length;
-    },
-    marktotal(){
-        return 0;
-    },
-    unmarktotal(){
-        return 0;
-    },
-    remove(){
+ add(noteObject){
+    const note = new Note(noteObject);
+    this.notes.push(note);
+ },
+ searchById(id){
+   return this.notes.find(note=>note.id==id);
+ },
+ toggleMark(id){
+   this.searchById(id).toggleMark();
+   //const noteObject = this.searchById(id);
+   //noteObject.isMarked = !noteObject.isMarked;
+ },
 
-    },
-    search(){
 
-    },
-    sort(){
+ total(){
+    return this.notes.length;
+ },
+ markTotal(){
+    return this.notes.
+    filter(note=>note.isMarked).length;
+ },
+ unMarkTotal(){
+    return this.total() - this.markTotal();
+ },
+ getNotes(){
+   return this.notes;
+ },
+ remove(){
+   this.notes = this.notes
+   .filter(note=>!note.isMarked)
+ },
+ search(){
 
-    },
-    save(){
+ },
+ sort(){
 
-    },
-    update(){
+ },
+ save(){
 
-    },
-    load(){
+ },
+ update(){
 
-    }
+ },
+ load(){
+
+ }
 }
